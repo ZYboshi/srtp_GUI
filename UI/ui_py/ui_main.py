@@ -1,13 +1,12 @@
 import sys
 from threading import Thread
-import time
-from time import sleep
+
 from PySide6.QtWidgets import QApplication, QMessageBox
 from PySide6.QtUiTools import QUiLoader
 
 import ui_send
 import ui_receiver
-
+import ui_information
 #ui参数说明
 #button1 : 发送    ； button2 :接受   ; button3 : 其他信息
 
@@ -26,6 +25,7 @@ class Stats:
 
         self.ui.button1.clicked.connect(self.send_open) #打开发送界面
         self.ui.button2.clicked.connect(self.receiver_open)  # 打开发送界面
+        self.ui.button3.clicked.connect(self.information_open)  # 打开发送界面
     #打开新窗口
     #实例化另外一个窗口，显示新窗口，关闭老窗口
     def send_open(self):
@@ -36,8 +36,13 @@ class Stats:
         self.receiver_Window = ui_receiver.receiver_Window()
         self.receiver_Window.ui.show()
         self.ui.hide()
-        thread1 = Thread(target=self.receiver_Window.check_file_existence, args=())
-        thread1.start()  # 线程1开始
+
+
+    def information_open(self):
+        self.information_Window = ui_information.information_Window()
+        self.information_Window.ui.show()
+        self.ui.hide()
+
 
 
 

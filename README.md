@@ -8,3 +8,8 @@ ___
 * 获取发送图片:图片address：resources\pic.png
 ## ui_receiver
 * 获取接收图片:图片address：resources\pic1.png
+
+## ui_information
+* 中间信息：骨架图+prompt
+## 接收信息
+* 已完成异步信息接收，主要通过：watchdog（进行文件系统监控，增强效率） 信号和槽函数（信号传递）
