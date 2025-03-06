@@ -21,7 +21,7 @@ class receiver_Window(QObject):
     def __init__(self):
         super().__init__()
         # 再加载界面
-        self.ui = uiLoader.load(r'..\ui\receiver.ui')
+        self.ui = uiLoader.load(r'.\ui\receiver.ui')
         #槽函数
         self.ui.button.clicked.connect(self.monitor_open)  # 获取图片
         self.pic_triggered.connect(self.pic_open)
@@ -34,7 +34,7 @@ class receiver_Window(QObject):
     def monitor_open(self):
         # 创建监控实例并传入回调(通过lambda捕获self)
         self.monitor = Watch_dog.FolderMonitor(
-            folder_path=r'..\ui_py\resources',
+            folder_path=r'.\resources',
             target_file="pic1.png",  #想要得到的图片名称
             callback=lambda: self.pic_triggered.emit()  # 触发信号
         )
@@ -48,7 +48,7 @@ class receiver_Window(QObject):
 
     def pic_open(self):
         print("正在加载图片...")
-        pixmap = QPixmap(r'..\ui_py\resources\pic1.png')
+        pixmap = QPixmap(r'.\resources\pic1.png')
         if not pixmap.isNull():
             self.ui.label1.setPixmap(pixmap)
 

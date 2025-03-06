@@ -20,7 +20,7 @@ class Stats:
 
     def __init__(self):
         # 再加载界面
-        self.ui = uiLoader.load(r'..\ui\StartUp.ui')
+        self.ui = uiLoader.load(r'.\ui\StartUp.ui')
         #槽函数定义
 
         self.ui.button1.clicked.connect(self.send_open) #打开发送界面

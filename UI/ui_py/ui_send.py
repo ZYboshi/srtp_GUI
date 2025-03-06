@@ -12,13 +12,13 @@ uiLoader = QUiLoader()
 class send_Window():
     def __init__(self):
         # 再加载界面
-        self.ui = uiLoader.load(r'..\ui\send.ui')
+        self.ui = uiLoader.load(r'.\ui\send.ui')
         #槽函数
         self.ui.button1_1.clicked.connect(self.pic_open)  # 获取图片
 
 
     def pic_open(self):
-        pixmap = QPixmap(r'..\ui_py\resources\pic.png')
+        pixmap = QPixmap(r'.\resources\pic.png')
         if not pixmap.isNull():
             # 将图片设置到 QLabel 上
             self.ui.label11.setPixmap(pixmap)

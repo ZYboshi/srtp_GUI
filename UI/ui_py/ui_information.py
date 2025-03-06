@@ -26,7 +26,7 @@ class information_Window(QObject):
     def __init__(self):
         # 再加载界面
         super().__init__()
-        self.ui = uiLoader.load(r'..\ui\information.ui')
+        self.ui = uiLoader.load(r'.\ui\information.ui')
         #槽函数
         self.ui.button3.clicked.connect(self.monitor_open)  # 获取图片
         self.pic_triggered.connect(self.pic_open)
@@ -37,7 +37,7 @@ class information_Window(QObject):
     def monitor_open(self):
         # 创建监控实例并传入回调(通过lambda捕获self)
         self.monitor = Watch_dog.FolderMonitor(
-            folder_path=r'..\ui_py\resources',
+            folder_path=r'.\resources',
             target_file="pic1.png",
             callback=lambda: self.pic_triggered.emit()  # 触发信号
         )
