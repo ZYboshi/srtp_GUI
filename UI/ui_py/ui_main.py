@@ -46,8 +46,8 @@ class Stats:
 
 
 
-
-app = QApplication([])
-stats = Stats()
-stats.ui.show()
-app.exec()
+if __name__ == '__main__':
+    app = QApplication([])
+    stats = Stats()
+    stats.ui.show()
+    app.exec()
