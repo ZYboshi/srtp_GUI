@@ -21,7 +21,7 @@ class receiver_Window(QObject):
     def __init__(self):
         super().__init__()
         # 再加载界面
-        self.ui = uiLoader.load(r'.\ui\receiver.ui')
+        self.ui = uiLoader.load(os.path.join('.', 'ui', 'receiver.ui'))
         #槽函数
         self.ui.button.clicked.connect(self.monitor_open)  # 获取图片
         self.pic_triggered.connect(self.pic_open)
@@ -48,7 +48,7 @@ class receiver_Window(QObject):
 
     def pic_open(self):
         print("正在加载图片...")
-        pixmap = QPixmap(r'.\resources\pic1.png')
+        pixmap = QPixmap(os.path.join('.', 'resources', 'pic1.png'))
         if not pixmap.isNull():
             self.ui.label1.setPixmap(pixmap)
 

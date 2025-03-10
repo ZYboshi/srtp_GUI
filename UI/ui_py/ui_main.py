@@ -1,6 +1,7 @@
 import sys
 from threading import Thread
-
+import os
+from os.path import join
 from PySide6.QtWidgets import QApplication, QMessageBox
 from PySide6.QtUiTools import QUiLoader
 
@@ -20,7 +21,7 @@ class Stats:
 
     def __init__(self):
         # 再加载界面
-        self.ui = uiLoader.load(r'.\ui\StartUp.ui')
+        self.ui = uiLoader.load(os.path.join('.', 'ui', 'StartUp.ui'))
         #槽函数定义
 
         self.ui.button1.clicked.connect(self.send_open) #打开发送界面
@@ -42,8 +43,6 @@ class Stats:
         self.information_Window = ui_information.information_Window()
         self.information_Window.ui.show()
         self.ui.hide()
-
-
 
 
 if __name__ == '__main__':

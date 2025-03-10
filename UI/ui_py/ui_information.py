@@ -3,7 +3,7 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import QObject, Signal, QThread
 from PySide6.QtWidgets import QApplication
-
+import os
 import sys
 import Watch_dog
 
@@ -26,7 +26,7 @@ class information_Window(QObject):
     def __init__(self):
         # 再加载界面
         super().__init__()
-        self.ui = uiLoader.load(r'.\ui\information.ui')
+        self.ui = uiLoader.load(os.path.join('.', 'ui', 'information.ui'))
         #槽函数
         self.ui.button3.clicked.connect(self.monitor_open)  # 获取图片
         self.pic_triggered.connect(self.pic_open)
@@ -52,7 +52,7 @@ class information_Window(QObject):
 
     def pic_open(self):
         print("正在加载图片...")
-        pixmap = QPixmap(r'..\ui_py\resources\pic1.png')
+        pixmap = QPixmap(os.path.join('.', 'resources', 'pic1.png'))
         if not pixmap.isNull():
             self.ui.label3_0.setPixmap(pixmap)
         else:
@@ -60,7 +60,7 @@ class information_Window(QObject):
 
         try:
             # 读取文件（注意文件路径！）
-            with open(r'..\ui_py\resources\prompt.txt', "r", encoding="utf-8") as f:
+            with open(os.path.join('.', 'resources', 'prompt.txt'), "r", encoding="utf-8") as f:
                 content = f.read()
             self.ui.textBrowser.setPlainText(content)
         except FileNotFoundError:
