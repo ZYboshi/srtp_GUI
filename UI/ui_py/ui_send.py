@@ -1,7 +1,7 @@
 from PySide6 import QtWidgets
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtGui import QPixmap
-from PySide6.QtCore import QObject, Signal, QThread
+from PySide6.QtCore import QObject, Signal, QThread ,QSize
 import os
 import APIinfo
 uiLoader = QUiLoader()
@@ -11,34 +11,63 @@ uiLoader = QUiLoader()
 #获取图片按钮:button1_1 ; 发送按钮:button1_2
 #Label: 原图：label_2  ; 图片放置:label11 ; 当前连接设备；label_3
 #显示连接line : lineEdit
+#label:显示状态
 class send_Window(QObject):
     def __init__(self):
         # 再加载界面
         super().__init__()
         self.ui = uiLoader.load(os.path.join('.', 'ui', 'send.ui'))
+        self.movie1 = self.QMovie(os.path.join('.', 'resources', 'icon_ok.gif.gif'))
+        self.movie2 = self.QMovie(os.path.join('.', 'resources', 'icon_warning.gif'))
+        self.movie1.setScaledSize(QSize(80, 80))
+        self.movie2.setScaledSize(QSize(80, 80))
         #槽函数
         self.ui.button1_1.clicked.connect(self.pic_open)  # 获取图片
 
-
-
-    def pic_open(self):
-        pixmap = QPixmap(os.path.join('.', 'resources', 'pic.png'))
+    def pic_open(self,pic_name):
+        pixmap = QPixmap(os.path.join('.', 'resources', 'send',pic_name))
         if not pixmap.isNull():
             # 将图片设置到 QLabel 上
             self.ui.label11.setPixmap(pixmap)
         else:
             self.ui.label11.setText("Failed to load image!")
 
+    def task_begin(self):
+        self.processor_thread = ClassifyProcessorThread()
+        self.processor_thread.result_signal.connect(self.task_work)
+        self.processor_thread.start()
+
+    #accident:1  other:0
+    def task_work(self,status,message):
+        if status == 0:
+            pic_name = 'yuantu.png'
+            self.pic_open(pic_name)
+            self.movie_start(1)
+        if status == 1:
+            pic_name = 'yuantu.png'
+            self.pic_open(pic_name)
+            self.movie_start(2)
+        else:
+            self.ui.label.setText("出现问题，请检查")
 
 
+    def movie_start(self,status):
+        if status == 1:
+            self.ui.label.setMovie(self.movie1)
+            self.movie1.start()
+        if status == 2:
+            self.ui.label.setMovie(self.movie2)
+            self.movie2.start()
+
+
+#QThread使用：重写run函数即可
 #
 class ClassifyProcessorThread(QThread):
-
     result_signal = Signal(int, str)  # (状态码, 消息)
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.image_path = os.path.join('.', 'resources', 'send.png')
+        self.image_path = os.path.join('.', 'resources','send','yuantu.png')
         self.running = False
         self.processor = APIinfo.ClassifyProcessor(
             input_path=self.image_path,

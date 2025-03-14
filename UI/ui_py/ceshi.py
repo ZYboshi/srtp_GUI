@@ -21,7 +21,7 @@ class ceshi_window(QObject):
         self.ui.button.clicked.connect(self.trans_start)  # 开始转换
 
     def pic_open(self):
-            pixmap = QPixmap(os.path.join('.', 'resources', 'input.png'))
+            pixmap = QPixmap(os.path.join('.', 'resources','receive','input.png'))
             if not pixmap.isNull():
                 # 将图片设置到 QLabel 上
                 self.ui.label1.setPixmap(pixmap)
@@ -37,7 +37,7 @@ class ceshi_window(QObject):
 
 
     def pic_open2(self):
-            pixmap = QPixmap(os.path.join('.', 'resources', 'output.png'))
+            pixmap = QPixmap(os.path.join('.', 'resources', 'receive','output.png'))
             if not pixmap.isNull():
                 # 将图片设置到 QLabel 上
                 self.ui.label2.setPixmap(pixmap)
