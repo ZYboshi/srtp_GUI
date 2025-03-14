@@ -30,7 +30,8 @@ class ceshi_window(QObject):
 
 
     def trans_start(self):
-        index = APIinfo.get_info()
+        api = APIinfo.ImageProcessor()
+        index = api.get_info()
         if index == 1:
             self.pic_open2()
 
