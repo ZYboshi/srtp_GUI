@@ -2,9 +2,10 @@ from PySide6 import QtWidgets
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import QObject, Signal, QThread
+from PySide6.QtWidgets import QApplication
 import os
 import APIinfo
-
+import sys
 #数据
 #开始转换按钮：button   原图获取:button1
 #原图：label1 , 结果图：label2   512*512
@@ -43,4 +44,8 @@ class ceshi_window(QObject):
                 self.ui.label2.setText("Failed to load image!")
 
 
-
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = ceshi_window()
+    window.ui.show()
+    sys.exit(app.exec())

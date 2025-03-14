@@ -5,6 +5,7 @@ import os
 
 def get_info():
 
+
     input_image_path = os.path.join('.', 'resources', 'input.png')  # 要发送的图片路径
     output_image_path = os.path.join('.', 'resources', 'output.png')  # 要保存的返回图片路径
     url = "http://localhost:8080"
@@ -23,7 +24,7 @@ def get_info():
         status = response_json["status"]
         if  status == "success":
             img_data = base64.b64decode(response_json["result"])
-            with open("output.jpg", "wb") as f:
+            with open("output.png", "wb") as f:
                 f.write(img_data)
             print("转换成功")
             return 1
