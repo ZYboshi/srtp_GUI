@@ -17,12 +17,12 @@ class send_Window(QObject):
         # 再加载界面
         super().__init__()
         self.ui = uiLoader.load(os.path.join('.', 'ui', 'send.ui'))
-        self.movie1 = self.QMovie(os.path.join('.', 'resources', 'icon_ok.gif.gif'))
+        self.movie1 = self.QMovie(os.path.join('.', 'resources', 'icon_ok.gif'))
         self.movie2 = self.QMovie(os.path.join('.', 'resources', 'icon_warning.gif'))
         self.movie1.setScaledSize(QSize(80, 80))
         self.movie2.setScaledSize(QSize(80, 80))
         #槽函数
-        self.ui.button1_1.clicked.connect(self.pic_open)  # 获取图片
+        self.ui.button1_1.clicked.connect(self.task_begin)  # 获取图片
 
     def pic_open(self,pic_name):
         pixmap = QPixmap(os.path.join('.', 'resources', 'send',pic_name))
