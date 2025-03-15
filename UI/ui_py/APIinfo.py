@@ -77,8 +77,8 @@ class ClassifyProcessor:
         :param url: 服务端地址（默认'http://localhost:8080'）
         :param headers: 请求头（默认使用octet-stream类型）
         """
-        self.input_image_path = input_path or os.path.join('.', 'resources', 'input.png')
-        self.output_image_path = output_path or os.path.join('.', 'resources', 'output.png')
+        self.input_image_path = input_path or os.path.join('.', 'resources','send','yuantu.png')
+        self.output_image_path = output_path or os.path.join('.', 'resources','send','yuantu.png')
         self.url = url or "http://localhost:8080/classify"
         self.headers = headers or {
             "Content-Type": "application/octet-stream",
@@ -86,12 +86,13 @@ class ClassifyProcessor:
         }
 
     def get_info(self):
+        print("成功进入Classify:get_info")
         try:
             with open(self.input_image_path, "rb") as f:
+                print("API成功读取图像信息")
                 image_data = f.read()
-
             response = requests.post(self.url, headers=self.headers, data=image_data)
-
+            response.raise_for_status()
             response_json = response.json()
             print(response_json)
             status = response_json["status"]

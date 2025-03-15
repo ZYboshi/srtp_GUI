@@ -2,6 +2,7 @@ from PySide6 import QtWidgets
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import QObject, Signal, QThread ,QSize
+from PySide6.QtGui import QMovie
 import os
 import APIinfo
 uiLoader = QUiLoader()
@@ -17,8 +18,8 @@ class send_Window(QObject):
         # 再加载界面
         super().__init__()
         self.ui = uiLoader.load(os.path.join('.', 'ui', 'send.ui'))
-        self.movie1 = self.QMovie(os.path.join('.', 'resources', 'icon_ok.gif'))
-        self.movie2 = self.QMovie(os.path.join('.', 'resources', 'icon_warning.gif'))
+        self.movie1 = QMovie(os.path.join('.', 'resources', 'icon_ok.gif'))
+        self.movie2 = QMovie(os.path.join('.', 'resources', 'icon_warning.gif'))
         self.movie1.setScaledSize(QSize(80, 80))
         self.movie2.setScaledSize(QSize(80, 80))
         #槽函数
@@ -33,12 +34,14 @@ class send_Window(QObject):
             self.ui.label11.setText("Failed to load image!")
 
     def task_begin(self):
+        print("开启线程")
         self.processor_thread = ClassifyProcessorThread()
         self.processor_thread.result_signal.connect(self.task_work)
         self.processor_thread.start()
 
     #accident:1  other:0
     def task_work(self,status,message):
+        print(status,message)
         if status == 0:
             pic_name = 'yuantu.png'
             self.pic_open(pic_name)
@@ -74,9 +77,11 @@ class ClassifyProcessorThread(QThread):
         )
 
     def run(self):
+        print("正在运行中")
         self.running = True
         while self.running:
             try:
+                print("进入try")
                 result = self.processor.get_info()
                 if result == 0:
                     self.result_signal.emit(0, "处理成功")
@@ -86,9 +91,16 @@ class ClassifyProcessorThread(QThread):
                     self.result_signal.emit(2, "服务错误")
                 else:
                     self.result_signal.emit(3, "未知状态")
-                self.msleep(1000)
+                self.msleep(5000)
             except Exception as e:
+                print("进入except")
                 self.result_signal.emit(4, f"异常错误: {str(e)}")
+                self.msleep(5000)
 
 
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = send_Window()
+    window.ui.show()
+    sys.exit(app.exec())
 
