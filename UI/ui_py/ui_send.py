@@ -3,6 +3,7 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import QObject, Signal, QThread ,QSize
 from PySide6.QtGui import QMovie
+from PySide6.QtWidgets import QApplication
 import os
 import APIinfo
 uiLoader = QUiLoader()
@@ -99,8 +100,8 @@ class ClassifyProcessorThread(QThread):
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QApplication([])
     window = send_Window()
     window.ui.show()
-    sys.exit(app.exec())
+    app.exec()
 
