@@ -1,12 +1,17 @@
 from PySide6 import QtWidgets
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtGui import QPixmap
+from PySide6.QtGui import QPixmap,QImage
 from PySide6.QtCore import QObject, Signal, QThread ,QSize
 from PySide6.QtGui import QMovie
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication,QMessageBox
+import ui_camera
 import os
 import APIinfo
 uiLoader = QUiLoader()
+
+
+
+
 
 
 #参数:
@@ -15,6 +20,10 @@ uiLoader = QUiLoader()
 #显示连接line : lineEdit
 #label:显示状态
 class send_Window(QObject):
+    trans_signal = Signal()
+    trans1_signal = Signal()
+    trans2_signal = Signal()
+
     def __init__(self):
         # 再加载界面
         super().__init__()
@@ -23,8 +32,43 @@ class send_Window(QObject):
         self.movie2 = QMovie(os.path.join('.', 'resources', 'icon_warning.gif'))
         self.movie1.setScaledSize(QSize(80, 80))
         self.movie2.setScaledSize(QSize(80, 80))
+        """       
+        self.camera_thread = ui_camera.CameraApp()
+        self.camera_thread.frame_ready.connect(self.display_frame)
+        self.camera_thread.start()
+        """
         #槽函数
         self.ui.button1_1.clicked.connect(self.task_begin)  # 获取图片
+        self.ui.button1_3.clicked.connect(self.camera_open)
+        """
+        self.camera_thread.error_occurred.connect(self.show_error_message)
+        """
+        self.ui.transbutton.clicked.connect(self.open_main)
+        self.ui.transbutton1.clicked.connect(self.open_send)
+        self.ui.transbutton2.clicked.connect(self.open_receive)
+    def open_main(self):
+        self.trans_signal.emit()
+    def open_send(self):
+        self.trans1_signal.emit()
+    def open_receive(self):
+        self.trans2_signal.emit()
+
+    def camera_open(self):
+        self.camera_thread = ui_camera.CameraApp()
+        self.camera_thread.frame_ready.connect(self.display_frame)
+        self.camera_thread.start()
+        self.camera_thread.error_occurred.connect(self.show_error_message)
+        self.ui.button1_2.clicked.connect(self.camera_thread.stop)  # 关闭摄像头 ，清除图片文件
+    def show_error_message(self, title, message):
+        QMessageBox.critical(self.ui, title, message)
+
+    def display_frame(self, q_img):
+        """将帧显示在 QLabel 上"""
+        # 将 QImage 转换为 QPixmap 并显示到 QLabel 上
+        target_size = QSize(512, 512)  # 宽度 512，高度 512
+        pixmap = QPixmap.fromImage(q_img).scaled(target_size)
+        self.ui.labelvideo.setPixmap(pixmap)
+
 
     def pic_open(self,pic_name):
         pixmap = QPixmap(os.path.join('.', 'resources', 'send',pic_name))

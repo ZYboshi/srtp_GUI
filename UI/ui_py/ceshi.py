@@ -12,6 +12,10 @@ import sys
 uiLoader = QUiLoader()
 
 class ceshi_window(QObject):
+    trans_signal = Signal()
+    trans1_signal = Signal()
+    trans2_signal = Signal()
+
     def __init__(self):
         # 再加载界面
         super(ceshi_window, self).__init__()
@@ -19,6 +23,15 @@ class ceshi_window(QObject):
         #槽函数
         self.ui.button1.clicked.connect(self.pic_open)  # 获取图片
         self.ui.button.clicked.connect(self.trans_start)  # 开始转换
+        self.ui.transbutton.clicked.connect(self.open_main)
+        self.ui.transbutton1.clicked.connect(self.open_send)
+        self.ui.transbutton2.clicked.connect(self.open_receive)
+    def open_main(self):
+        self.trans_signal.emit()
+    def open_send(self):
+        self.trans1_signal.emit()
+    def open_receive(self):
+        self.trans2_signal.emit()
 
     def pic_open(self):
             pixmap = QPixmap(os.path.join('.', 'resources','receive','input.png'))

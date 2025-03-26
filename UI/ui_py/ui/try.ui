@@ -6,97 +6,230 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>800</height>
+    <width>1071</width>
+    <height>679</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label1">
+  <property name="styleSheet">
+   <string notr="true"> background-color:rgb(243, 248, 255)</string>
+  </property>
+  <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>110</y>
-     <width>512</width>
-     <height>512</height>
+     <x>10</x>
+     <y>70</y>
+     <width>111</width>
+     <height>541</height>
     </rect>
    </property>
-   <property name="text">
-    <string>TextLabel</string>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
    </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QPushButton" name="transbutton">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>主页</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="transbutton1">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>发送</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="transbutton2">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>接收</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QLabel" name="label2">
+  <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>640</x>
-     <y>120</y>
-     <width>512</width>
-     <height>512</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
+     <x>400</x>
      <y>10</y>
-     <width>191</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 28pt &quot;Microsoft YaHei UI&quot;;</string>
-   </property>
-   <property name="text">
-    <string>原图</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>750</x>
-     <y>30</y>
-     <width>191</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 28pt &quot;Microsoft YaHei UI&quot;;</string>
-   </property>
-   <property name="text">
-    <string>测试图</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="button">
-   <property name="geometry">
-    <rect>
-     <x>730</x>
-     <y>640</y>
-     <width>141</width>
+     <width>221</width>
      <height>51</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>24</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(6, 67, 117);</string>
+   </property>
    <property name="text">
-    <string>开始转换</string>
+    <string>车辆V2V通信</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="button1">
+  <widget class="QFrame" name="frame_2">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>640</y>
-     <width>131</width>
-     <height>41</height>
+     <x>150</x>
+     <y>70</y>
+     <width>871</width>
+     <height>601</height>
     </rect>
    </property>
-   <property name="text">
-    <string>获取原图</string>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(247, 247, 247);</string>
    </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label1">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>10</y>
+      <width>200</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(188, 188, 188);
+ border: 1px solid</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>230</y>
+      <width>121</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 28pt &quot;Microsoft YaHei UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>骨架图</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>512</width>
+      <height>512</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(188, 188, 188);
+ border: 1px solid
+</string>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>390</y>
+      <width>161</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="button">
+       <property name="text">
+        <string>开始转换</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button1">
+       <property name="text">
+        <string>获取骨架</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>530</y>
+      <width>111</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 28pt &quot;Microsoft YaHei UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string>还原图</string>
+    </property>
+   </widget>
   </widget>
+  <zorder>frame_2</zorder>
+  <zorder>button</zorder>
+  <zorder>button1</zorder>
+  <zorder>frame</zorder>
+  <zorder>label_5</zorder>
  </widget>
  <resources/>
  <connections/>
