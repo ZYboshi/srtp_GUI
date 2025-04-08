@@ -39,11 +39,22 @@ class Stats:
     def send_open(self):
         if self.send_window is None:
             self.send_window = ui_send.send_Window()
+
+
             # 重写关闭事件为隐藏
             self.send_window.ui.closeEvent = lambda event: self.send_window.ui.hide()
             self.send_window.trans_signal.connect(self.main_open)
             self.send_window.trans1_signal.connect(self.send_open)
             self.send_window.trans2_signal.connect(self.receiver_open)
+            if self.receiver_window is None:
+                self.receiver_window = ceshi.ceshi_window()
+                self.receiver_window.ui.closeEvent = lambda event: self.receiver_window.ui.hide()
+                self.receiver_window.trans_signal.connect(self.main_open)
+                self.receiver_window.trans1_signal.connect(self.send_open)
+                self.receiver_window.trans2_signal.connect(self.receiver_open)
+                self.send_window.image_updated.connect(self.receiver_window.update_image)
+                self.receiver_window.ui.show()
+
         self.send_window.ui.show()
         self.ui.hide()
     def receiver_open(self):
@@ -53,6 +64,7 @@ class Stats:
             self.receiver_window.trans_signal.connect(self.main_open)
             self.receiver_window.trans1_signal.connect(self.send_open)
             self.receiver_window.trans2_signal.connect(self.receiver_open)
+
         self.receiver_window.ui.show()
         self.ui.hide()
 

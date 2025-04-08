@@ -99,7 +99,7 @@ class ClassifyProcessor:
             if  status == "success":
                 print("转换成功")
                 result = response_json.get("result")
-                if result == "success":
+                if result == "accident":
                     return self.ACCIDENT
                 if result == "other":
                     return self.OTHER
