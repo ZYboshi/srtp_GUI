@@ -63,7 +63,7 @@ class send_Window(QObject):
     #直接播放图片
     def vedio_on(self):
         self.target_dir = os.path.join('.', 'resources', 'send')
-        self.image_list = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "9.png"]
+        self.image_list = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png","8.png", "9.png"]
         self.current_image_index = 0  # 当前处理的图片索引
 
         # 创建定时器

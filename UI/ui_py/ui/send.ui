@@ -96,14 +96,14 @@ border-color: rgb(149, 149, 149);</string>
      <item>
       <widget class="QPushButton" name="button1_3">
        <property name="text">
-        <string>开启摄像头</string>
+        <string>开启运行</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="button1_2">
        <property name="text">
-        <string>关闭摄像头</string>
+        <string>结束运行</string>
        </property>
       </widget>
      </item>

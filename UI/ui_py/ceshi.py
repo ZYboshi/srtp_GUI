@@ -62,6 +62,7 @@ class ceshi_window(QObject):
             Qt.TransformationMode.SmoothTransformation
         )
         if not pixmap.isNull():
+            print("接收端:成功放上"+f"{self.current_play_index}.png")
             self.ui.label2.setPixmap(pixmap)
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>widget</class>
+ <widget class="QWidget" name="widget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>接收窗口</string>
   </property>
   <property name="styleSheet">
    <string notr="true"> background-color:rgb(243, 248, 255)</string>
@@ -182,7 +182,7 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -226,8 +226,6 @@
    </widget>
   </widget>
   <zorder>frame_2</zorder>
-  <zorder>button</zorder>
-  <zorder>button1</zorder>
   <zorder>frame</zorder>
   <zorder>label_5</zorder>
  </widget>
